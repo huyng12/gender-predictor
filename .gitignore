@@ -1,2 +1,3 @@
 .venev
 __pycache__
+*.log
