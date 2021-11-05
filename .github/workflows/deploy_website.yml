@@ -1,4 +1,4 @@
-name: deploy website
+name: deploy
 
 on:
     push:
@@ -8,7 +8,7 @@ on:
             - site/**
 
 jobs:
-    prod:
+    website:
         runs-on: ubuntu-latest
         defaults:
             run:

@@ -1,4 +1,4 @@
-name: lint website
+name: lint
 
 on:
     push:
@@ -6,7 +6,7 @@ on:
             - site/**
 
 jobs:
-    check:
+    website:
         runs-on: ubuntu-latest
         defaults:
             run:
