@@ -1,5 +1,8 @@
 {
 	"editor.insertSpaces": false,
 	"editor.formatOnSave": true,
-	"python.defaultInterpreterPath": "./api/.venev/bin/python3"
+	"python.defaultInterpreterPath": "./api/.venev/bin/python3",
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": true
+	}
 }
