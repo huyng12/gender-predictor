@@ -1,11 +1,12 @@
 from flask import request
 
 
-# TODO: Use model to predict
-def handle_predict():
-    body = request.get_json(force=True)
-    return {
-        "name": body['name'],
-        "predict": "male",
-        "accuracy": 96.7791211232
-    }
+def handle_predict(predictors):
+    def handler():
+        body = request.get_json(force=True)
+        names = body['names']
+        result = []
+        for predictor in predictors:
+            result = result + predictor.predict(names)
+        return {"data": result}, 200
+    return handler
