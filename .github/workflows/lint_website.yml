@@ -1,12 +1,12 @@
-name: deploy
+name: lint website
 
 on:
     push:
-        tags:
-            - "v*"
+        paths:
+            - site/**
 
 jobs:
-    prod:
+    check:
         runs-on: ubuntu-latest
         defaults:
             run:
@@ -20,9 +20,4 @@ jobs:
               with:
                   version: 6.20.2
             - run: pnpm i --frozen-lockfile
-            - run: pnpm build
-            - uses: peaceiris/actions-gh-pages@v3
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: site/dist
-                  cname: gender-predictor.nguyenrk.com
+            - run: pnpm lint

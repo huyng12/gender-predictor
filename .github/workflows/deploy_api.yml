@@ -1,0 +1,23 @@
+name: deploy api
+
+on:
+    push:
+        tags:
+            - "v*"
+        paths:
+            - api/**
+
+jobs:
+    prod:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: akhileshns/heroku-deploy@v3.12.12
+              with:
+                  heroku_email: ${{secrets.HEROKU_EMAIL}}
+                  heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+                  heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+                  appdir: api
+                  procfile: "web: gunicorn --workers 1 --bind 0.0.0.0:5000 wsgi:app"
+              env:
+                  HD_WEB_CONCURRENCY: "2"
