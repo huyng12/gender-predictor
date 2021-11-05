@@ -1,17 +1,18 @@
 import { SetState } from "@moai/core/dist/types/utils/utils";
 import { useState } from "react";
 
-export enum Mode {
-	SINGLE = "single",
-	BATCH = "batch",
+export enum Theme {
+	LIGHT = "light",
+	DARK = "dark",
+	SYSTEM = "system",
 }
 
 export interface PrefsState {
-	mode: Mode;
-	setMode: SetState<Mode>;
+	theme: Theme;
+	setTheme: SetState<Theme>;
 }
 
 export const usePrefs = (): PrefsState => {
-	const [mode, setMode] = useState<Mode>(Mode.SINGLE);
-	return { mode, setMode };
+	const [theme, setTheme] = useState<Theme>(Theme.SYSTEM);
+	return { theme, setTheme };
 };

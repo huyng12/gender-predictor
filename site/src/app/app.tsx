@@ -1,28 +1,55 @@
-import { background as bg, border as bd } from "@moai/core";
-import { Batch } from "../batch/batch";
+import { Pane } from "@moai/core";
+import { Form } from "../form/form";
 import { Heading } from "../heading/heading";
 import { PrefsPane } from "../prefs/prefs";
-import { Mode, usePrefs } from "../prefs/state";
-import { Single } from "../single/single";
+import { usePrefs } from "../prefs/state";
+import { Result } from "../result/result";
 import s from "./app.module.css";
-
-const classes = {
-	container: s.container,
-	card: [s.card, bg.strong, bd.strong, bd.radius].join(" "),
-	children: s.children,
-};
 
 export const App = (): JSX.Element => {
 	const prefs = usePrefs();
 	return (
-		<div className={classes.container}>
+		<div className={s.container}>
 			<Heading />
-			<div className={classes.card}>
-				<PrefsPane prefs={prefs} />
-				<div className={classes.children}>
-					{prefs.mode === Mode.SINGLE && <Single />}
-					{prefs.mode === Mode.BATCH && <Batch />}
-				</div>
+			<div style={{ marginTop: 20 }}>
+				<Pane>
+					<PrefsPane prefs={prefs} />
+					<Form />
+					<Result
+						items={[
+							{
+								name: "Nguyễn Minh Huy",
+								predicts: [
+									{
+										gender: "male",
+										accuracy: 0.997829,
+										algorithm: { name: "Multinominal NB" },
+									},
+									{
+										gender: "male",
+										accuracy: 0.977119,
+										algorithm: { name: "KNN" },
+									},
+								],
+							},
+							{
+								name: "Lê Đoàn Minh Hằng",
+								predicts: [
+									{
+										gender: "female",
+										accuracy: 0.901241,
+										algorithm: { name: "Multinominal NB" },
+									},
+									{
+										gender: "female",
+										accuracy: 0.921311,
+										algorithm: { name: "KNN" },
+									},
+								],
+							},
+						]}
+					/>
+				</Pane>
 			</div>
 		</div>
 	);

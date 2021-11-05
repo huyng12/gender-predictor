@@ -1,0 +1,14 @@
+.container {
+	margin-top: 10px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.buttonPane {
+	display: flex;
+	justify-content: center;
+}
