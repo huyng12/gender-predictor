@@ -1,8 +1,8 @@
 import "@moai/core/dist/bundle.css";
-import "@moai/core/dist/font/remote.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./app/app";
+import "./styles/app.css";
 
 ReactDOM.render(
 	<React.StrictMode>

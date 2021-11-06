@@ -30,7 +30,7 @@ const getGenderColor = (gender: "male" | "female") => {
 
 export const ExpandedRow = (row: Item): JSX.Element => {
 	return (
-		<table className={s.table}>
+		<table className={[s.table, s.tagFitContainer].join(" ")}>
 			{row.predicts.map((predict) => (
 				<tr key={predict.model_name}>
 					<td>{predict.model_name}</td>

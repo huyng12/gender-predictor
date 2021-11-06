@@ -5,3 +5,8 @@
 .table td:first-child {
 	padding-left: 0;
 }
+
+.tagFitContainer span {
+	width: 100%;
+	justify-content: center;
+}
