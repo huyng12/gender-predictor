@@ -18,6 +18,3 @@ jobs:
                   heroku_api_key: ${{secrets.HEROKU_API_KEY}}
                   heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
                   appdir: api
-                  procfile: "web: gunicorn --workers 1 --bind 0.0.0.0:5000 wsgi:app"
-              env:
-                  HD_WEB_CONCURRENCY: "2"
