@@ -10,6 +10,8 @@ interface Predict {
 export interface Item {
 	name: string;
 	predicts: Predict[];
+	gender: Predict["gender"];
+	accuracy: Predict["accuracy"];
 }
 
 interface Props {
@@ -28,19 +30,23 @@ const getGenderColor = (gender: "male" | "female") => {
 
 export const ExpandedRow = (row: Item): JSX.Element => {
 	return (
-		<div className={s.predicts}>
+		<table className={s.table}>
 			{row.predicts.map((predict) => (
-				<div key={predict.model_name} className={s.predictContainer}>
-					<span>{predict.model_name}</span>
-					<Tag color={getGenderColor(predict.gender)}>
-						{predict.gender}
-					</Tag>
-					<Tag color={getAccuracyColor(predict.accuracy)}>
-						{predict.accuracy.toFixed(4)}
-					</Tag>
-				</div>
+				<tr key={predict.model_name}>
+					<td>{predict.model_name}</td>
+					<td>
+						<Tag color={getGenderColor(predict.gender)}>
+							{predict.gender}
+						</Tag>
+					</td>
+					<td>
+						<Tag color={getAccuracyColor(predict.accuracy)}>
+							{predict.accuracy.toFixed(4)}
+						</Tag>
+					</td>
+				</tr>
 			))}
-		</div>
+		</table>
 	);
 };
 
@@ -60,23 +66,17 @@ export const Result = (props: Props): JSX.Element | null => {
 						{
 							title: "Gender",
 							render: (row): JSX.Element => {
-								const [predict] = row.predicts;
-								const color = getGenderColor(predict.gender);
-								return (
-									<Tag color={color}>{predict.gender}</Tag>
-								);
+								const color = getGenderColor(row.gender);
+								return <Tag color={color}>{row.gender}</Tag>;
 							},
 						},
 						{
 							title: "Accuracy",
 							render: (row): JSX.Element => {
-								const [predict] = row.predicts;
-								const color = getAccuracyColor(
-									predict.accuracy
-								);
+								const color = getAccuracyColor(row.accuracy);
 								return (
 									<Tag color={color}>
-										{predict.accuracy.toFixed(4)}
+										{row.accuracy.toFixed(4)}
 									</Tag>
 								);
 							},

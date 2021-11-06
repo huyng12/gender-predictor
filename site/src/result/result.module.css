@@ -1,11 +1,7 @@
-.predicts {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+.table td {
+	border: none;
 }
 
-.predictContainer {
-	display: flex;
-	align-items: center;
-	gap: 5px;
+.table td:first-child {
+	padding-left: 0;
 }

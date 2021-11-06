@@ -31,7 +31,30 @@ export const predict = async (names: string[]): Promise<Item[]> => {
 
 		const items: Item[] = Object.keys(result).map((uuid): Item => {
 			const predicts = result[uuid];
-			return { name: predicts[0].name, predicts: predicts };
+
+			// Calculate dominant gender predict and average of its accuracy
+			const malePredicts = predicts.filter((p) => p.gender === "male");
+			const femalePredicts = predicts.filter(
+				(p) => p.gender === "female"
+			);
+			const dominantGenderPredicts =
+				malePredicts.length > femalePredicts.length
+					? malePredicts
+					: femalePredicts;
+
+			const gender = dominantGenderPredicts[0].gender;
+			const accuracy =
+				dominantGenderPredicts.reduce(
+					(total, p) => total + p.accuracy,
+					0
+				) / dominantGenderPredicts.length;
+
+			return {
+				name: predicts[0].name,
+				predicts: predicts,
+				gender,
+				accuracy,
+			};
 		});
 
 		return items;
