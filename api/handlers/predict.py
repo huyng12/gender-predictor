@@ -8,6 +8,9 @@ def handle_predict(predictors):
         body = request.get_json(force=True)
         names = body['names']
 
+        if len(names) == 0:
+            return {"error": "list must contains at least one name"}, 400
+
         # Add unique ID for preventing name duplication
         names_with_uuid = []
         for name in names:
