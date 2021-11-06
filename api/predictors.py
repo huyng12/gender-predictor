@@ -15,4 +15,15 @@ def load_predictors():
     multinomial_nb = Predictor(vectorizer=vectorizer, model=multinomial_nb_model,
                                model_name='Multinomial NB')
 
-    return [multinomial_nb]
+    # Init Logistic Regression predictor
+    logistic_regression_model = load_model(
+        path='models/logistic_regression.pkl')
+    logistic_regression = Predictor(vectorizer=vectorizer, model=logistic_regression_model,
+                                    model_name='Logistic Regression')
+
+    # Init Decision Tree predictor
+    decision_tree_model = load_model(path='models/decision_tree.pkl')
+    decision_tree = Predictor(vectorizer=vectorizer,
+                              model=decision_tree_model, model_name='Decision Tree')
+
+    return [multinomial_nb, logistic_regression, decision_tree]
