@@ -1,0 +1,11 @@
+.predicts {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.predictContainer {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}

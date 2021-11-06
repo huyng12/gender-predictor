@@ -5,6 +5,7 @@ specifiers:
     "@types/react": ^17.0.0
     "@types/react-dom": ^17.0.0
     "@vitejs/plugin-react": 1.0.5
+    axios: ^0.24.0
     prettier: ^2.4.1
     react: ^17.0.0
     react-dom: ^17.0.0
@@ -14,6 +15,7 @@ specifiers:
 
 dependencies:
     "@moai/core": 1.4.3_react-dom@17.0.2+react@17.0.2
+    axios: 0.24.0
     react: 17.0.2
     react-dom: 17.0.2_react@17.0.2
     react-icons: 4.3.1_react@17.0.2
@@ -512,6 +514,17 @@ packages:
             color-convert: 1.9.3
         dev: true
 
+    /axios/0.24.0:
+        resolution:
+            {
+                integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==,
+            }
+        dependencies:
+            follow-redirects: 1.14.5
+        transitivePeerDependencies:
+            - debug
+        dev: false
+
     /browserslist/4.17.6:
         resolution:
             {
@@ -830,6 +843,19 @@ packages:
                 integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==,
             }
         dev: true
+
+    /follow-redirects/1.14.5:
+        resolution:
+            {
+                integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==,
+            }
+        engines: { node: ">=4.0" }
+        peerDependencies:
+            debug: "*"
+        peerDependenciesMeta:
+            debug:
+                optional: true
+        dev: false
 
     /fsevents/2.3.2:
         resolution:

@@ -1,13 +1,10 @@
 import { Pane, Table, Tag } from "@moai/core";
-
-interface Algorithm {
-	name: string;
-}
+import s from "./result.module.css";
 
 interface Predict {
 	gender: "male" | "female";
 	accuracy: number;
-	algorithm: Algorithm;
+	model_name: string;
 }
 
 export interface Item {
@@ -25,7 +22,30 @@ const getAccuracyColor = (accuracy: number) => {
 	return Tag.colors.green;
 };
 
-export const Result = (props: Props): JSX.Element => {
+const getGenderColor = (gender: "male" | "female") => {
+	return gender === "male" ? Tag.colors.blue : Tag.colors.pink;
+};
+
+export const ExpandedRow = (row: Item): JSX.Element => {
+	return (
+		<div className={s.predicts}>
+			{row.predicts.map((predict) => (
+				<div key={predict.model_name} className={s.predictContainer}>
+					<span>{predict.model_name}</span>
+					<Tag color={getGenderColor(predict.gender)}>
+						{predict.gender}
+					</Tag>
+					<Tag color={getAccuracyColor(predict.accuracy)}>
+						{predict.accuracy.toFixed(4)}
+					</Tag>
+				</div>
+			))}
+		</div>
+	);
+};
+
+export const Result = (props: Props): JSX.Element | null => {
+	if (props.items.length === 0) return null;
 	return (
 		<div style={{ marginTop: 20 }}>
 			<Pane noPadding>
@@ -41,10 +61,7 @@ export const Result = (props: Props): JSX.Element => {
 							title: "Gender",
 							render: (row): JSX.Element => {
 								const [predict] = row.predicts;
-								const color =
-									predict.gender === "male"
-										? Tag.colors.blue
-										: Tag.colors.pink;
+								const color = getGenderColor(predict.gender);
 								return (
 									<Tag color={color}>{predict.gender}</Tag>
 								);
@@ -65,6 +82,7 @@ export const Result = (props: Props): JSX.Element => {
 							},
 						},
 					]}
+					expandable={{ render: ExpandedRow }}
 					fill
 				></Table>
 			</Pane>

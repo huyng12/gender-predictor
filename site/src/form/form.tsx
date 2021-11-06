@@ -1,10 +1,16 @@
 import { Button, text, TextArea } from "@moai/core";
+import { SetState } from "@moai/core/dist/types/utils/utils";
 import { BsGenderAmbiguous } from "react-icons/bs";
+import { Item } from "../result/result";
 import s from "./form.module.css";
 import { useForm } from "./state";
 
-export const Form = (): JSX.Element => {
-	const form = useForm();
+interface Props {
+	setItems: SetState<Item[]>;
+}
+
+export const Form = (props: Props): JSX.Element => {
+	const form = useForm(props);
 	return (
 		<div className={s.container}>
 			<form className={s.form} onSubmit={form.onSubmit}>
