@@ -27,7 +27,7 @@ def load_predictors():
                               model=decision_tree_model, model_name='Decision Tree')
 
     # Init KNN predictor
-    knn_model = load_model(path='models/decision_tree.pkl')
+    knn_model = load_model(path='models/knn.pkl')
     knn = Predictor(vectorizer=vectorizer, model=knn_model, model_name='KNN')
 
     return [multinomial_nb, logistic_regression, decision_tree, knn]
