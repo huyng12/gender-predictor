@@ -1,3 +1,4 @@
+import { toast } from "@moai/core";
 import { SetState } from "@moai/core/dist/types/utils/utils";
 import React, { useState } from "react";
 import { predict } from "../api/api";
@@ -25,6 +26,7 @@ export const useForm = (props: Props): FormState => {
 		const listOfNames = names.split("\n").filter((s) => s.length > 0);
 		predict(listOfNames)
 			.then((items) => props.setItems(items))
+			.catch((e: Error) => toast(toast.types.failure, e.message))
 			.finally(() => setLoading(false));
 	};
 
