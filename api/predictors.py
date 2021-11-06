@@ -28,6 +28,7 @@ def load_predictors():
 
     # Init KNN predictor
     knn_model = load_model(path='models/knn.pkl')
-    knn = Predictor(vectorizer=vectorizer, model=knn_model, model_name='KNN')
+    knn = Predictor(vectorizer=vectorizer, model=knn_model,
+                    model_name='k-Nearest Neighbours')
 
     return [multinomial_nb, logistic_regression, decision_tree, knn]
