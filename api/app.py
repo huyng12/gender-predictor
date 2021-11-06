@@ -8,7 +8,10 @@ from handlers.predict import handle_predict
 
 def setup_app(app, predictors):
     # Register CORS
-    CORS(app, origins="https://gender-predictor.nguyenrk.com")
+    resources = {r"/*": {
+        "origins": "https://gender-predictor.nguyenrk.com"
+    }}
+    CORS(app, resources=resources)
 
     # Register app routes
     app.add_url_rule('/', view_func=handle_health_check, methods=['GET'])
