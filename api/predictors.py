@@ -31,4 +31,9 @@ def load_predictors():
     knn = Predictor(vectorizer=vectorizer, model=knn_model,
                     model_name='k-Nearest Neighbours')
 
-    return [multinomial_nb, logistic_regression, decision_tree, knn]
+    # Init SVM predictor
+    svm_model = load_model(path='models/svm.pkl')
+    svm = Predictor(vectorizer=vectorizer, model=svm_model,
+                    model_name='Support Vector Machine')
+
+    return [multinomial_nb, logistic_regression, decision_tree, knn, svm]
