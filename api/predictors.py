@@ -36,4 +36,9 @@ def load_predictors():
     svm = Predictor(vectorizer=vectorizer, model=svm_model,
                     model_name='Support Vector Machine')
 
-    return [multinomial_nb, logistic_regression, decision_tree, knn, svm]
+    # Init Random Forest predictor
+    rf_model = load_model(path='models/random_forest.pkl')
+    rf = Predictor(vectorizer=vectorizer, model=rf_model,
+                   model_name='Random Forest')
+
+    return [multinomial_nb, logistic_regression, decision_tree, knn, svm, rf]
